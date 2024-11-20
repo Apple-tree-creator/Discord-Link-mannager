@@ -1,0 +1,42 @@
+-----Changing bots status-----
+
+# Setting `Playing ` status
+await client.change_presence(activity=discord.Game(name=f.readline))
+
+# Setting `Streaming ` status
+await client.change_presence(activity=discord.Streaming(name=f.readline(), url=f.readline()))
+
+# Setting `Listening ` status
+await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f.readline()))
+
+# Setting `Watching ` status
+await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f.readline))
+
+-----Instructions----
+#No reset change
+1. Go to "activity.txt"
+Line 1 is for the name of the Game/Stream/Song/Video
+Line 2 if for stream link
+
+What the file should look like
+_________________________________________________________________
+|__activity.txt_____________________________________| - | = | X |
+||1| streaming                                                  |
+||2| Cheese                                                     |
+||3| https://www.youtube.com/watch?v=_a9no8vs9xM                                                     |
+||4|                                                            |
+||5|                                                            |
+||6|                                                            |
+||7|                                                            |
+||8|                                                            |
+||9|                                                            |
+|10|                                                            |
+|11|                                                            |
+|12|                                                            |
+|13|                                                            |
+|---------------------------------------------------------------|
+-----------------------------------------------------------------
+
+
+
+
