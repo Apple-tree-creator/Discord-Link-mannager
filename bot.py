@@ -19,7 +19,7 @@ def Find(string):
     return [x[0] for x in url]
 
 
-TargetChannel = CHANNELID # Channel for links to be sent to
+TargetChannel = ChannelID # Channel for links to be sent to
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -65,19 +65,20 @@ while True:
 
     @client.event
     async def on_message(message):
-        if message.author == client.user: # Ignores messages from itself
-            return
+        if 'pin' in message.content.lower() and ('url, link') in message.content.lower():
+            if message.author == client.user: # Ignores messages from itself
+                return
 
-        if 'http' in message.content.lower():
-            string = str(message.content)
-            link = str(Find(string))
-            link = str(link).replace(link[:2],'')[:-2] # Grabs link and removes the [' '] brackets
-            response = requests.get(link)
-            soup = BeautifulSoup(response.content, 'html.parser')
-            title = soup.title.string
-            channel = client.get_channel(TargetChannel) # Sets channel to target channel
-            print(link)
-            await channel.send(f'{title}: {link}')
+            if 'http' in message.content.lower():
+                string = str(message.content)
+                link = str(Find(string))
+                link = str(link).replace(link[:2],'')[:-2] # Grabs link and removes the [' '] brackets
+                response = requests.get(link)
+                soup = BeautifulSoup(response.content, 'html.parser')
+                title = soup.title.string
+                channel = client.get_channel(TargetChannel) # Sets channel to target channel
+                print(link)
+                await channel.send(f'{title}: {link}')
     try:
         client.run('TOKEN') # bot token
     except discord.HTTPException as e:
